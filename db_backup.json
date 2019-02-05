@@ -1,0 +1,16 @@
+{
+    "teste": {
+        "__class__": "Entry",
+        "__module__": "mini_redis",
+        "key": "teste",
+        "validity": 0,
+        "value": "a"
+    },
+    "testeb": {
+        "__class__": "Entry",
+        "__module__": "mini_redis",
+        "key": "testeb",
+        "validity": 0,
+        "value": "a"
+    }
+}
