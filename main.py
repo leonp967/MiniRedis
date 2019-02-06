@@ -3,7 +3,7 @@ from flask import Flask
 from flask_restplus import Resource, Api, reqparse
 
 app = Flask(__name__)
-api = Api(app, version='1.0', title='MiniRedis API', description=' API implementing a subset of Redis operations')
+api = Api(app, version='1.0', title='MiniRedis API', description='API implementing a subset of Redis operations')
 keys_ns = api.namespace('keys', description='Operations with simple keys')
 db_ns = api.namespace('db', description='Operations regarding the storage')
 sets_ns = api.namespace('sets', description="Operations with sorted sets")
@@ -25,11 +25,11 @@ class KeysResource(Resource):
         args = parser.parse_args()
         return set_key(key, args['value'], args['seconds'])
 
-    @keys_ns.param('keys', 'List of comma-separated keys to delete')
+    @keys_ns.param('keys', 'List of space-delimited keys to delete')
     def delete(self, key):
         """Delete the key"""
         parser = reqparse.RequestParser()
-        parser.add_argument('keys', type=str, trim=True, required=False)
+        parser.add_argument('keys', type=str, required=False)
         args = parser.parse_args()
         return delete(key, args['keys'])
 
@@ -73,11 +73,8 @@ class SetsResource(Resource):
         args = parser.parse_args()
         return z_range(key, args['start'], args['stop'])
 
-
-    @sets_ns.param('scores', 'List of scores to add on the set, must have the same length as the members list',
-                   required=True)
-    @sets_ns.param('members', 'List of members to add on the set, must have the same length as the scores list',
-                   required=True)
+    @sets_ns.param('scores', 'Space-delimited scores to add on the set, same length as the members list', required=True)
+    @sets_ns.param('members', 'Space-delimited members to add on the set, same length as the scores list', required=True)
     def put(self, key):
         """Add the specified members and scores to the set stored on the key, or creates the set with the members and scores"""
         parser = reqparse.RequestParser()
