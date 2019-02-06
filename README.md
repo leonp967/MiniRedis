@@ -4,6 +4,7 @@ Implementação de um subset de comandos do [Redis](https://redis.io) utilizando
 - [Flask-RESTPlus](https://flask-restplus.readthedocs.io/en/stable/#) - Extensão do Flask que facilita a criação de API's REST.
 - [ASGI](https://github.com/django/asgiref/) - Contém funções utilitárias para conversão de funções assíncronas em síncronas.
 
+# Comandos
 Os comandos implementados foram os seguintes:
 - SET key value
 - SET key value EX seconds
@@ -17,7 +18,9 @@ Os comandos implementados foram os seguintes:
 - ZRANGE key start stop
 
 # Utilização
-Os comandos podem ser utilizados através do próprio Swagger gerado pela aplicação, ou por um cliente REST qualquer.
+Os comandos podem ser utilizados através do próprio Swagger gerado pela aplicação, ou por um cliente REST qualquer. O formato de request é similar aos originais, porém a chave sempre faz parte da URL base, e o resto dos parâmetros é passado normalmente.
 
 # Implementação
-Os SortedSets foram implementados utilizando a classe OrderedDict do próprio Python, reordenando os elementos pelo score sempre que estes são atualizados. A aplicação também possui a funcionalidade de realizar um backup dos dados em memória a cada 30 minutos (valor modificável) no formato JSON. Além disso, o controle das threads foi feito de acordo com cada chave utilizada para armazenar dados, ou seja, o bloqueio é feito individualmente para cada chave, e não por método.
+- Os SortedSets foram implementados utilizando a classe OrderedDict do próprio Python, reordenando os elementos pelo score sempre que estes são atualizados. 
+- A aplicação possui a funcionalidade de realizar um backup dos dados em memória a cada 30 minutos (valor modificável) no formato JSON.
+- O controle das threads foi feito de acordo com cada chave utilizada para armazenar dados, ou seja, o bloqueio é feito individualmente para cada chave, e não por método.
