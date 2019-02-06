@@ -26,7 +26,7 @@ Os comandos podem ser utilizados através do próprio Swagger gerado pela aplica
 - O controle das threads foi feito de acordo com cada chave utilizada para armazenar dados, ou seja, o bloqueio é feito individualmente para cada chave, e não por método.
 
 # Desempenho
-Para tomar a decisão de manter ou não o controle das threads com utilização de mutex, foram feitos benchmarks através do JMeter para medir o tempo de execução das requests tanto no sistema utilizando mutex, quanto não utilizando, assim como fazendo requests forçando a ocorrência de situações de corrida, e também evitando esse tipo de situação. Ao comparar os resultados, notou-se que houve uma queda de performance ao utilizar os mutex's, mas a diferença ficou dentro do aceitável, considerando a segurança adquirida com a mudança de abordagem. A comparação pode ser observada no seguinte gráfico:
+Para tomar a decisão de manter ou não o controle das threads com utilização de mutex, foram feitos benchmarks através do JMeter para medir o tempo de execução das requests tanto no sistema utilizando mutex, quanto não utilizando, assim como fazendo requests forçando a ocorrência de situações de corrida, e também evitando esse tipo de situação. Ao comparar os resultados, notou-se que houve uma queda de performance ao utilizar os mutex's, mas a diferença ficou dentro do aceitável, considerando que ainda estamos bem abaixo da faixa dos 100 ms, e também a segurança adquirida com a mudança de abordagem. A comparação pode ser observada no seguinte gráfico:
 <p align="center">
   <img src="grafico_benchmark.png"/>
 </p>
